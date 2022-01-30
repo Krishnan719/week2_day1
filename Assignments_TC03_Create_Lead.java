@@ -1,0 +1,74 @@
+package assignments.week2.day1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.support.ui.Select;
+
+public class Assignments_TC03_Create_Lead {
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("http://leaftaps.com/opentaps/control/main");
+		driver.manage().window().maximize();
+		driver.findElement(By.className("inputLogin")).sendKeys("democsr");
+		driver.findElement(By.id("password")).sendKeys("crmsfa");
+		driver.findElement(By.className("decorativeSubmit")).click();
+		driver.findElement(By.partialLinkText("SFA")).click();
+		driver.findElement(By.linkText("Leads")).click();
+		driver.findElement(By.linkText("Create Lead")).click();
+		driver.findElement(By.xpath("(//input[@name='companyName'])[2]")).sendKeys("Testleaf");
+		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Krishnan");
+		driver.findElement(By.xpath("//input[contains(@id,'createLeadForm_last')]")).sendKeys("Kankipati");
+		WebElement sourceDropDown=driver.findElement(By.xpath("//select[@name='dataSourceId']"));
+		Select source = new Select(sourceDropDown);
+		source.selectByVisibleText("Existing Customer");
+		WebElement marketingCampaign=driver.findElement(By.xpath("//select[contains(@name,'marketingCampaign')]"));
+		Select marketing = new Select(marketingCampaign);
+		marketing.selectByValue("CATRQ_CAMPAIGNS");
+		driver.findElement(By.name("firstNameLocal")).sendKeys("Krishnan");
+		driver.findElement(By.id("createLeadForm_lastNameLocal")).sendKeys("Kankipati");
+		driver.findElement(By.xpath("//input[@name='personalTitle']")).sendKeys("Mr");
+		driver.findElement(By.xpath("//input[@name='birthDate']")).sendKeys("07/9/83");
+		driver.findElement(By.xpath("//input[@name='generalProfTitle']")).sendKeys("Quality Analyst");
+		driver.findElement(By.id("createLeadForm_departmentName")).sendKeys("Testing");
+		driver.findElement(By.xpath("//input[@name='annualRevenue']")).sendKeys("10000000");
+		WebElement currencyDropDown=driver.findElement(By.xpath("//select[@name='currencyUomId']"));
+		Select currency = new Select(currencyDropDown);
+		currency.selectByIndex(70);
+		WebElement ownershipDropDown=driver.findElement(By.id("createLeadForm_ownershipEnumId"));
+		Select ownership = new Select(ownershipDropDown);
+		ownership.selectByVisibleText("Partnership");
+		driver.findElement(By.xpath("//input[contains(@name,'numberEmplo')]")).sendKeys("10000");
+		WebElement industryDropDown=driver.findElement(By.name("industryEnumId"));
+		Select industry = new Select(industryDropDown);
+		industry.selectByValue("IND_MANUFACTURING");
+		driver.findElement(By.xpath("//input[@id='createLeadForm_sicCode']")).sendKeys("1000");
+		driver.findElement(By.name("tickerSymbol")).sendKeys("8766");
+		driver.findElement(By.xpath("//textarea[contains(@id,'createLeadForm_descr')]")).sendKeys("How are you?");
+		driver.findElement(By.xpath("//textarea[contains(@id,'createLeadForm_important')]")).sendKeys("Important steps");
+		driver.findElement(By.xpath("(//input[contains(@name,'primaryPhoneCountry')])[4]")).clear();
+		driver.findElement(By.xpath("(//input[contains(@name,'primaryPhoneCountry')])[4]")).sendKeys("4");
+		driver.findElement(By.id("createLeadForm_primaryPhoneAreaCode")).sendKeys("044");
+		driver.findElement(By.xpath("(//input[@name='primaryPhoneNumber'])[4]")).sendKeys("8939227788");
+		driver.findElement(By.xpath("//input[@name='primaryPhoneExtension']")).sendKeys("8901");
+		driver.findElement(By.xpath("//input[contains(@id,'createLeadForm_primaryPhoneAsk')]")).sendKeys("Kesav");
+		driver.findElement(By.xpath("(//input[@name='primaryEmail'])[4]")).sendKeys("k@g.com");
+		driver.findElement(By.name("primaryWebUrl")).sendKeys("https://www.google.co.in");
+		driver.findElement(By.name("generalToName")).sendKeys("Lakshmi");
+		driver.findElement(By.xpath("//input[contains(@id,'createLeadForm_generalAttn')]")).sendKeys("Narayanan");
+		driver.findElement(By.xpath("//input[@name='generalAddress1']")).sendKeys("Chennai");
+		driver.findElement(By.xpath("//input[@id='createLeadForm_generalAddress2']")).sendKeys("Bengaluru");
+		driver.findElement(By.xpath("(//input[contains(@name,'general')])[6]")).sendKeys("Hyderabad");
+		WebElement stateDropDown=driver.findElement(By.name("generalStateProvinceGeoId"));
+		Select state = new Select(stateDropDown);
+		state.selectByValue("CA");
+		driver.findElement(By.xpath("//input[contains(@name,'generalPostal')]")).sendKeys("600028");
+		WebElement provinceDropDown=driver.findElement(By.xpath("//select[contains(@id,'createLeadForm_generalCountry')]"));
+		Select province = new Select(provinceDropDown);
+		province.selectByVisibleText("United States");
+		driver.findElement(By.name("generalPostalCodeExt")).sendKeys("90202");
+		driver.findElement(By.xpath("//input[@value='Create Lead']")).click();
+		}
+}
